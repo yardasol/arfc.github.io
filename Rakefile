@@ -6,7 +6,7 @@ require "jekyll"
 require "jekyll/scholar"
 
 # Change your GitHub reponame
-GITHUB_REPONAME = "arfc/arfc.github.io"
+GITHUB_REPONAME = "yardasol/arfc.github.io"
 
 
 desc "Generate blog files"
@@ -35,8 +35,8 @@ task :publish => [:generate] do
     system "git remote add upstream git@github.com:#{GITHUB_REPONAME}.git"
     system "git push upstream master --force"
 
-    Dir.chdir pwd
-    system "git checkout source"
-    system "git push upstream source"
+    #Dir.chdir pwd
+    #system "git checkout source"
+    #system "git push upstream source"
   end
 end

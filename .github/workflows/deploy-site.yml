@@ -22,8 +22,15 @@ jobs:
           restore-keys: |
                 ${{ runner.os }}-gems-
 
-      - name: Deploy the website
-        uses: jeffreytse/jekyll-deploy-action@v0.4.0
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          branch: 'master'
+          ruby-version: 3.0
+          bundler-cache: true
+
+      - name: Deploy the website
+        run: bundle exec rake publish
+     #   uses: helaili/jekyll-action@v2
+     #   with:
+     #     token: ${{ secrets.GITHUB_TOKEN }}
+     #     target_branch: 'master'
