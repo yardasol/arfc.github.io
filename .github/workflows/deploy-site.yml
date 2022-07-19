@@ -28,7 +28,9 @@ jobs:
           ruby-version: 3.0
           bundler-cache: true
 
-      - run: gem update --system
+      - run: |
+          gem update --system
+          bundle install rake
 
       - name: Deploy the website
         run: bundle exec rake publish
