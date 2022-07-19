@@ -34,6 +34,7 @@ task :publish_via_cd => [:generate] do
     message = "Site updated at #{Time.now.utc}"
     system "git commit -am #{message.inspect}"
   end
+end
 
 desc "Generate and publish blog to gh-pages"
 task :publish => [:generate] do
