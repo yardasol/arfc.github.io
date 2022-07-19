@@ -29,7 +29,13 @@ jobs:
           bundler-cache: true
 
       - name: Deploy the website
-        run: bundle exec rake publish
+        run: bundle exec rake publish_via_cd
+      
+      - name: Push the changes
+        uses: ad-m/github-push-actions@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: 'master'
      #   uses: helaili/jekyll-action@v2
      #   with:
      #     token: ${{ secrets.GITHUB_TOKEN }}
