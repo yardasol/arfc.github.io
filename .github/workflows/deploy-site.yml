@@ -30,7 +30,6 @@ jobs:
 
       - run: |
           gem update --system
-          bundle install rake
 
       - name: Deploy the website
         run: bundle exec rake publish
