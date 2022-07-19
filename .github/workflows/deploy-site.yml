@@ -15,21 +15,18 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: actions/cache@v2
-        with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-                ${{ runner.os }}-gems-
+     # - uses: actions/cache@v2
+     #   with:
+     #     path: vendor/bundle
+     #     key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+     #     restore-keys: |
+     #           ${{ runner.os }}-gems-
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.0
           bundler-cache: true
-
-      - run: |
-          gem update --system
 
       - name: Deploy the website
         run: bundle exec rake publish
