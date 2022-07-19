@@ -54,7 +54,7 @@ task :publish => [:generate] do
     system "git push upstream master --force"
 
     Dir.chdir pwd
-    system "git checkout autodeploy-test"
-    system "git push upstream autodeploy-test"
+    system "git checkout source"
+    system "git push upstream source"
   end
 end
