@@ -29,9 +29,10 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.0
+          bundler-cache: true
 
-      - name: Install dependencies
-        run: gem install jekyll bundler jekyll-scholar
+     # - name: Install dependencies
+     #   run: gem install jekyll bundler jekyll-scholar
 
       - name: Deploy the website
         run: rake publish_via_cd
