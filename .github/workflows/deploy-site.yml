@@ -35,7 +35,7 @@ jobs:
      #   run: gem install jekyll bundler jekyll-scholar
 
       - name: Deploy the website
-        run: rake publish_via_cd
+        run: bundle exec rake publish_via_cd
       
       - name: Push the changes
         uses: ad-m/github-push-action@master
