@@ -6,7 +6,7 @@ require "jekyll"
 require "jekyll/scholar"
 
 # Change your GitHub reponame
-GITHUB_REPONAME = "arfc/arfc.github.io"
+GITHUB_REPONAME = "yardasol/arfc.github.io"
 
 
 desc "Generate blog files"
@@ -17,6 +17,24 @@ task :generate do
   })).process
 end
 
+desc "Generate and publish blog to gh-pages (for use in github actions)"
+task :publish_via_cd => [:generate] do
+  Dir.mktmpdir do |tmp|
+    cp_r "_site/.", tmp
+    system "rm -r _site"
+
+    pwd = Dir.pwd
+
+    system "git config --local user.email 'github-actions[bot]@noreply.github.com'"
+    system "git config --local user.name 'github-actions[bot]'"
+    system "git checkout master"
+    system "rm -r *"
+    cp_r "#{tmp}/.", "."
+    system "git add ."
+    message = "Site updated at #{Time.now.utc}"
+    system "git commit -am #{message.inspect}"
+  end
+end
 
 desc "Generate and publish blog to gh-pages"
 task :publish => [:generate] do
@@ -36,7 +54,7 @@ task :publish => [:generate] do
     system "git push upstream master --force"
 
     Dir.chdir pwd
-    system "git checkout source"
-    system "git push upstream source"
+    system "git checkout autodeploy-test"
+    system "git push upstream autodeploy-test"
   end
 end
