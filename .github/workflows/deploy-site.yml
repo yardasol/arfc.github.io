@@ -34,15 +34,16 @@ jobs:
      # - name: Install dependencies
      #   run: gem install jekyll bundler jekyll-scholar
 
-      - name: Deploy the website
-        run: bundle exec rake publish_via_cd
+      - name: Build the website
+        run: bundle exec rake generate
       
-      - name: Push the changes
-        uses: ad-m/github-push-action@master
+      - name: Deploy website to master branch
+        uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: 'master'
-          force: true
+          publish_branch: master
+          publish_dir: ./_site
+          commit_message: "Update website at commit: ${{ github.event.head_commit.message }}"
      #   uses: helaili/jekyll-action@v2
      #   with:
      #     token: ${{ secrets.GITHUB_TOKEN }}
