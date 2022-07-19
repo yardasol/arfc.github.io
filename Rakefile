@@ -27,7 +27,7 @@ task :publish => [:generate] do
     pwd = Dir.pwd
 
     system "git config --local user.email 'github-actions[bot]@noreply.github.com'"
-    system "git confic --local user.name 'github-actions[bot]'"
+    system "git config --local user.name 'github-actions[bot]'"
     system "git checkout master"
     system "rm -r *"
     cp_r "#{tmp}/.", "."
