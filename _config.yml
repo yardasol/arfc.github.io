@@ -3,7 +3,7 @@ title: ARFC
 email: katyhuff@gmail.com
 description: "Website for the Advanced Reactors and Fuel Cycles group"
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://yardasol-arfc.github.io" # the base hostname & protocol for your site
+url: "http://yardasol-arfc.github.org" # the base hostname & protocol for your site
 twitter_username: katyhuff
 github_username: arfc
 logo: "/img/logo.svg"
